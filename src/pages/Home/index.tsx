@@ -1,4 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+
+import Button from './components/Button';
 
 import { Container } from "./styles";
 
@@ -26,10 +28,8 @@ export default function Home() {
     <Container>
       <div>Contador: {counter}</div>
       <div>
-        <button onClick={() => setIsCounting(true)} disabled={isCounting}>
-          Iniciar Contador
-        </button>
-        <button onClick={() => setIsCounting(false)}>Parar Contador</button>
+        <Button isCounting={isCounting} onClick={setIsCounting} disabled={isCounting} />
+      
       </div>
     </Container>
   );
