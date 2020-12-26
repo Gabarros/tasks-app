@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Dialog } from "@material-ui/core";
 
 import Button from "./components/Button";
+import SaveTaskForm from "./components/SaveTaskForm";
 
 import { Container, Timer, ButtonsContainer } from "./styles";
 
@@ -8,6 +10,7 @@ export default function Home() {
   const [counter, setCounter] = useState<number>(0);
   const [formattedCounter, setFormattedCounter] = useState<string>("00:00");
   const [isCounting, setIsCounting] = useState(false);
+  const [isOpenSaveDialog, setOpenSaveDialog] = useState(false);
 
   useEffect(() => {
     let intervalRef = setInterval(startCounter, 1000);
@@ -32,6 +35,9 @@ export default function Home() {
 
   return (
     <Container>
+      <Dialog open={isOpenSaveDialog} onClose={() => setOpenSaveDialog(false)}>
+        <SaveTaskForm />
+      </Dialog>
       <Timer>{formattedCounter}</Timer>
       <ButtonsContainer>
         <Button
@@ -40,6 +46,9 @@ export default function Home() {
           disabled={isCounting}
         />
       </ButtonsContainer>
+      {!isCounting && counter !== 0 && (
+        <button onClick={() => setOpenSaveDialog(true)}>Salvar Tarefa</button>
+      )}
     </Container>
   );
 }
