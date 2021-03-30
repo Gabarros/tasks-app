@@ -1,21 +1,39 @@
 import React, { useState } from "react";
-import { TextField, Select } from "@material-ui/core";
+import { TextField, Select, Button } from "@material-ui/core";
 
-// import { Container } from './styles';
+import { Container, ButtonsContainer } from "./styles";
 
-export default function SaveTaskForm() {
+interface SaveTaskFormProps {
+  onClose: Function;
+}
+
+export default function SaveTaskForm({ onClose }: SaveTaskFormProps) {
   const [taskName, setTaskName] = useState("");
   const [taskType, setTaskType] = useState("");
 
+  const handleSaveTask = () => {};
+
   return (
-    <form action="">
+    <Container action="">
       <p>Salvar Tarefa: </p>
       <TextField
         onChange={e => setTaskName(e.target.value)}
         variant="outlined"
+        size="medium"
+        label="Nome da tarefa"
       />
-      <button>Salvar</button>
-      <button>Cancelar</button>
-    </form>
+      <ButtonsContainer>
+        <Button variant="contained" color="secondary" onClick={() => onClose()}>
+          Cancelar
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => handleSaveTask()}
+        >
+          Salvar
+        </Button>
+      </ButtonsContainer>
+    </Container>
   );
 }

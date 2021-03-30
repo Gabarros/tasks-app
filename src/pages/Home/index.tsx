@@ -36,7 +36,7 @@ export default function Home() {
   return (
     <Container>
       <Dialog open={isOpenSaveDialog} onClose={() => setOpenSaveDialog(false)}>
-        <SaveTaskForm />
+        <SaveTaskForm onClose={() => setOpenSaveDialog(false)} />
       </Dialog>
       <Timer>{formattedCounter}</Timer>
       <ButtonsContainer>
